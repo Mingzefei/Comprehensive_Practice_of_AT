@@ -14,8 +14,11 @@ from scipy import signal
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
+import math
+import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn import preprocessing
+import scienceplots
 plt.style.use('science')
 
 
@@ -45,7 +48,7 @@ class Vibrating_signal:
         # 方差
         self.sigma2 = np.var(self.signal, axis=0)
         # 方根幅值
-        self.X_r = np.sqrt(np.mean(np.square(np.abs(self.signal)), axis=0))
+        self.X_r = np.square(np.mean(np.sqrt(np.abs(self.signal)), axis=0))
         # 均方值
         self.X_rms2 = np.mean(np.square(self.signal), axis=0)
         # 均方根值
@@ -53,7 +56,7 @@ class Vibrating_signal:
         # 歪度指标
         self.SK_f = stats.skew(self.signal, axis=0)
         # 峭度指标
-        self.K_f = stats.kurtosis(self.signal, axis=0)
+        self.K_f = stats.kurtosis(self.signal, axis=0, fisher=False)
         # 峰值指标
         self.C_f = self.X_p / self.X_rms
         # 脉冲指标
@@ -98,6 +101,12 @@ class Vibrating_signal:
         plt.subplot(2, 2, 4)
         plt.plot(t_data, self.S_f, label='waveform index')
         plt.xlim(0, 300)
+        plt.xlabel('time (h)')
+        plt.ylabel('time domain parameters')
+        plt.legend()
+        plt.title('time domain parameters (4/4)')
+        plt.title('time domain parameters (4/4)')
+        # plt.ylim(1.26, 1.29)
         plt.xlabel('time (h)')
         plt.ylabel('time domain parameters')
         plt.legend()
@@ -184,12 +193,6 @@ class Vibrating_signal:
         x = np.arange(1, self.num_intervals+1)*self.sample_interval/3600
         y = reduced_feature_matrix[:, 0]
         z = np.polyfit(x, y, 1)
-        p = np.poly1d(z)
-        plt.figure()
-        plt.plot(x, y, '-', label='original data')
-        plt.plot(x, p(x), 'r', label='fitted line')
-        plt.xlabel('time')
-        plt.xlim(0, 300)
         plt.ylabel('1st principal component')
         # plt.ylim(-1, 3)
         plt.legend()
