@@ -193,6 +193,9 @@ class Vibrating_signal:
         x = np.arange(1, self.num_intervals+1)*self.sample_interval/3600
         y = reduced_feature_matrix[:, 0]
         z = np.polyfit(x, y, 1)
+        plt.figure()
+        plt.plot(x,y,label='1st principal component')
+        plt.plot(x,np.polyval(z,x),label='linear fitting')
         plt.ylabel('1st principal component')
         # plt.ylim(-1, 3)
         plt.legend()
