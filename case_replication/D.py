@@ -126,7 +126,7 @@ class Vibrating_signal:
         # # Welch method
         f, Pxx = signal.welch(
             self.signal, self.sample_rate, nperseg=20480, axis=0)
-        self.total_energy = np.sum(Pxx, axis=0)  # 全频域能量
+        self.total_energy = np.sum(Pxx, axis=0) * (f[1]-f[0]) # 全频域能量
 
         plt.figure()
         t_data = np.arange(1, self.num_intervals+1)*self.sample_interval/3600
