@@ -186,8 +186,11 @@ class Vibrating_signal:
         plt.bar(np.arange(1, 4), pca.explained_variance_ratio_)
         plt.plot(np.arange(1, 4), np.cumsum(
             pca.explained_variance_ratio_), '-o')
+        # 标记累计贡献率
+        for x, y in zip(np.arange(1, 4), np.cumsum(pca.explained_variance_ratio_)):
+            plt.text(x, y, f'{y:.4f}', ha='center', va='bottom', fontsize=10)
         for x, y in zip(np.arange(1, 4), pca.explained_variance_ratio_):
-            plt.text(x, y, f'{y:.2f}', ha='center', va='bottom', fontsize=10)
+            plt.text(x, y, f'{y:.4f}', ha='center', va='bottom', fontsize=10)
         plt.xticks(np.arange(1, 4), ['1st', '2nd', '3rd'])
         plt.ylim(0, 1)
         plt.xlabel('principal component')

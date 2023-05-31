@@ -45,6 +45,8 @@ class Bulb_ALT:
             '8.0 V': [31.73, 35.4, 36.07, 43.07, 60.18, 65.75, 78.7, 96.61, 105.4, 132.6, 168.5, 191.4, 218.3, 251.6]
         }
         self.pd_data = pd.DataFrame(data)
+        print(self.pd_data)
+        print(self.pd_data.shape)
 
     def plot_failure_data(self):
         """
