@@ -33,6 +33,12 @@ class Vibrating_signal:
             self.sample_interval  # 每个采集周期的采样点数
         self.num_intervals = 133  # 采样周期数
 
+    def preprocess_data(self):
+        """
+        数据预处理，每个数据减去数据组的均值
+        """
+        self.signal = self.signal - np.mean(self.signal, axis=0)
+
     def time_domain_analysis(self):
         """
         时域分析
@@ -206,6 +212,8 @@ class Vibrating_signal:
 def main():
     print('>>初始化数据...')
     vibrating_signal = Vibrating_signal()
+    print('>>预处理数据...')
+    vibrating_signal.preprocess_data()
     print('-----------------------------')
     print('>>时域分析...')
     vibrating_signal.time_domain_analysis()
