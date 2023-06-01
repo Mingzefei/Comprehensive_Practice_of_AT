@@ -106,7 +106,7 @@ class Motor_ALT:
         plt.xlabel('$\ln{t}$')
         plt.ylabel('$\ln{\ln{(1/(1-F(t)))}}$')
         plt.savefig('motor-fig1-数学变换后的数对.png', dpi=300)
-        print('数学变换后的数对图：C1-fig1')
+        print('数学变换后的数对图：motor-fig1')
 
         # 最小二乘估计
         print('2. 应力水平 S 下 m 和 eta 的最小二乘估计结果：')
@@ -122,7 +122,7 @@ class Motor_ALT:
             plt.plot(np.log(self.pd_data[S_j][0:n]), slope *
                      np.log(self.pd_data[S_j][0:n])+intercept, '--', color='black',)
         plt.savefig('motor-fig2-分布直线拟合结果.png', dpi=300)
-        print('分布直线拟合结果：C1-fig2')
+        print('分布直线拟合结果：motor-fig2')
 
         # 威布尔分布参数 m 的估计
         m_average = sum([all_m[i]*len(self.data_total[S_j]) for i, S_j in enumerate(self.data_total.keys())]) / sum([len(self.data_total[S_j]) for S_j in self.data_total.keys()])
@@ -141,7 +141,7 @@ class Motor_ALT:
         plt.xlabel('$\ln{V}$')
         plt.ylabel('$\ln{\eta}$')
         plt.savefig('motor-fig3-电应力和寿命特征间的关系曲线.png', dpi=300)
-        print('电应力和寿命特征间的关系曲线：C1-fig3')
+        print('电应力和寿命特征间的关系曲线：motor-fig3')
 
         # 正常应力水平 S_0=6V 下分布参数及可靠性指标的估计
         S_0 = '2 V'
@@ -158,7 +158,7 @@ class Motor_ALT:
         plt.xlim((0, 3e2))
         plt.ylim((0, 1))
         plt.savefig('motor-fig4-正常应力水平下的可靠性曲线（最小二乘估计）.png', dpi=300)
-        print('正常应力水平下的可靠性曲线（最小二乘估计）：C1-fig4')
+        print('正常应力水平下的可靠性曲线（最小二乘估计）：motor-fig4')
 
         t_ans = find_t(R_t, 0.5, 0, 1e5)
         print(f'产品的中位寿命 t(R=0.5)：{t_ans:.0f} min')
@@ -214,7 +214,7 @@ class Motor_ALT:
         plt.ylim((0, 1))
         plt.legend()
         plt.savefig('motor-fig5-正常应力水平下的可靠性曲线（极大似然估计）.png', dpi=300)
-        print('正常应力水平下的可靠性曲线（极大似然估计）：C1-fig5')
+        print('正常应力水平下的可靠性曲线（极大似然估计）：motor-fig5')
         return R_t
 
 
@@ -241,7 +241,7 @@ def main():
     plt.ylim((0, 1))
     plt.legend()
     plt.savefig('motor-fig6-正常应力水平下的可靠性曲线.png', dpi=300)
-    print('正常应力水平下的可靠性曲线（两种方式对比）：C1-fig6')
+    print('正常应力水平下的可靠性曲线（两种方式对比）：motor-fig6')
 
     print('-----------------------------')
     print('  DONE<<')
